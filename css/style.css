@@ -1,5 +1,5 @@
 * {
-    border: 1px solid red !important;
+    /*border: 1px solid red !important;*/
 }
 
 * {
@@ -7,4 +7,16 @@
     -moz-box-sizing: border-box;
     -ms-box-sizing: border-box;
     box-sizing: border-box;
+}
+#container {
+  min-width: 310px;
+  max-width: 800px;
+  height: 400px;
+  margin: 0 auto
+}
+#container2 {
+	height: 400px; 
+	min-width: 310px; 
+	max-width: 800px;
+	margin: 0 auto;
 }

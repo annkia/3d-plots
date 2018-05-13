@@ -6,11 +6,17 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Wykres</title>
 		<link href="https://fonts.googleapis.com/css?family=Lato:100,300&amp;subset=latin-ext" rel="stylesheet">
-		<script src="https://d3js.org/d3.v5.min.js"></script>
 		<link rel="stylesheet" href="css/bootstrap.css">
 		<link rel="stylesheet" href="css/style.css">
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="myscript.js"></script>
+		<script src="plotly-latest.min.js"></script>
+		<script src="https://code.highcharts.com/highcharts.js"></script>
+		<script src="https://code.highcharts.com/modules/series-label.js"></script>
+		<script src="https://code.highcharts.com/modules/exporting.js"></script>
+		<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+
 	</head>
   <body>
     <div class="container">
@@ -62,15 +68,82 @@
           </div>
       </div>
       <div class="row">
-        <div class="col-md-8">
-					<svg width="50" height="50">
-    <circle cx="25" cy="25" r="22"
-     fill="blue" stroke="gray" stroke-width="2"/>
-</svg>
-        </div>
-        <div class="col-md-2">
+	    	<div class="col-md-12">
+	          <h1>Wykres 2D Ploty</h1>
+	        </div>
+	      </div>
+				<br><br>
+				<div class="row">
+        <div class="col-md-12">
+					<div id="tester" style="width:1000px;height:600px;"></div>
+					<script>
+						TESTER = document.getElementById('tester');
+						Plotly.plot( TESTER, [{
+						x: [1, 2, 3, 4, 5],
+						y: [1, 2, 4, 8, 16] }], {
+						margin: { t: 0 } } );
+					</script>
         </div>
       </div>
+			<div class="row">
+	    	<div class="col-md-12">
+	          <h1>Wykres 3D Ploty</h1>
+	        </div>
+	      </div>
+			<div class="row">
+				<div class="col-md-12">
+					<div id="myDiv" style="width:1000px;height:600px;"></div>
+
+<script>
+
+					Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/3d-scatter.csv', function(err, rows){
+function unpack(rows, key) {
+	return rows.map(function(row)
+	{ return row[key]; });}
+
+var trace1 = {
+	x:unpack(rows, 'x1'), y: unpack(rows, 'y1'), z: unpack(rows, 'z1'),
+	mode: 'markers',
+	marker: {
+		size: 12,
+		line: {
+		color: 'rgba(255, 100, 217, 0.14)',
+		width: 0.5},
+		opacity: 0.8},
+	type: 'scatter3d'
+};
+//
+var trace2 = {
+	x:unpack(rows, 'x2'), y: unpack(rows, 'y2'), z: unpack(rows, 'z2'),
+	mode: 'markers',
+	marker: {
+		color: 'rgb(243,218,011)', /* kolor kuleczek żółty*/
+		size: 12,
+		symbol: 'circle',
+		line: {
+		color: 'rgb(204, 0, 0)', /* kolor błękitny żółty*/
+		width: 1},
+		opacity: 0.8},
+	type: 'scatter3d'};
+
+var data = [trace1, trace2];
+var layout = {margin: {
+	l: 0,
+	r: 0,
+	b: 0,
+	t: 0
+  }};
+Plotly.newPlot('myDiv', data, layout);
+});
+
+</script>
+<br><br>
+
+
+
+
+				</div>
+			</div>
     </div>
   </body>
 </html>
